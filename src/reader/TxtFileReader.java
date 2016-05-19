@@ -3,9 +3,10 @@ package reader;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.*;
 
 public class TxtFileReader {
-    public static void readFile(String fileName){
+    public static Map readFile(String fileName, Map<String,Integer> map) {
 
         BufferedReader in = null;
         try {
@@ -14,7 +15,10 @@ public class TxtFileReader {
             System.err.println("File not found");
         }
         StringBuilder sb = new StringBuilder();
-        String[] strings = new String[20];
+
+        List<String> list = new ArrayList<>();
+
+
         try {
             try {
                 int s;
@@ -24,14 +28,19 @@ public class TxtFileReader {
                     if (Character.isLetterOrDigit(s)) {
                         sb.append((char) s);
                     } else {
-                        System.out.println(sb);
                         String slovo = String.valueOf(sb);
-                        strings[i] = String.valueOf(slovo);
-                        i++;
                         sb.delete(0, sb.length());
-                    }
-                    if ((char) s == '\n') {
-                        sb.delete(0, sb.length());
+                        if (map.get(slovo) == null) {
+                            map.put(slovo, 1);
+                        } else {
+                            int newKey = map.get(slovo) + 1;
+                            map.remove(slovo);
+                            map.put(slovo, newKey);
+                            sb.delete(0, sb.length());
+                        }
+                        if ((char) s == '\n') {
+                            sb.delete(0, sb.length());
+                        }
                     }
                 }
             } finally {
@@ -40,5 +49,7 @@ public class TxtFileReader {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return map;
     }
 }
+
