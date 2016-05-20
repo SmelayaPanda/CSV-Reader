@@ -1,7 +1,5 @@
 package word;
 
-import java.util.Comparator;
-
 public class WordUnit implements Comparable<WordUnit> {
 
     private String word = null;

@@ -1,20 +1,16 @@
-package reader;
-
-import catalog.CatalogNegative;
-import catalog.CatalogPositive;
+package catalog;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.Set;
 
 /**
- * Reader for verifiable file (now - "src/resources/test.txt")
+ * Reader for CatalogPositive and Negative words
  */
-public class TxtFileReader {
-    public static Map readFile(String fileName, Map<String, Integer> map) {
-
+public class MyCatalogReader {
+    public static Set readCatalog(String fileName, Set setName) {
         BufferedReader in = null;
         try {
             in = new BufferedReader(new FileReader(fileName));
@@ -27,18 +23,9 @@ public class TxtFileReader {
                             sb.append((char) s);
                         } else {
                             String slovo = String.valueOf(sb);
+                            setName.add(slovo);
                             sb.delete(0, sb.length());
 
-                            if ((map.get(slovo) == null) &&
-                                    CatalogPositive.getPositiveWord().contains(slovo) &&
-                                    !CatalogNegative.getNegativeWord().contains(slovo)) {
-                                map.put(slovo, 1);
-
-                            } else if (map.get(slovo) != null) {
-                                int newKey = map.get(slovo) + 1;
-                                map.remove(slovo);
-                                map.put(slovo, newKey);
-                            }
                         }
                     }
                 } finally {
@@ -49,7 +36,10 @@ public class TxtFileReader {
             }
         } catch (FileNotFoundException e) {
             System.err.println("File not found");
+
         }
-        return map;
+        return setName;
+
     }
 }
+
