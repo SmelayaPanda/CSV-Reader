@@ -10,12 +10,13 @@ import java.util.Set;
 public class CatalogPositive {
     public static Set getPositiveWord() {
         Set positiveSet = new HashSet<>();
+        //1й способ, напрямую добавлять позитивные слова
         positiveSet.add("Java");
         positiveSet.add("My");
         positiveSet.add("You");
         positiveSet.add("Java");
         positiveSet.add("You");
-
+        //2й способ - через текстовый файл, просто туда записывай слова
         MyCatalogReader.readCatalog("src/catalog/positive.txt", positiveSet);
         return positiveSet;
     }

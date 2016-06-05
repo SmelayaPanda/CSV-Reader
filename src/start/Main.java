@@ -11,6 +11,7 @@ public class Main {
         Map<String, Integer> map = new HashMap();
         ArrayList<WordUnit> list = new ArrayList<WordUnit>();
 
+        //args[0] - путь к читаемому файлу у меня  - C:\Users\Smela\IdeaProjects\Seminar-3\src\resources\test.txt
         TxtFileReader.readFile(args[0], map);
 
         WordUnit wordUnit = null;

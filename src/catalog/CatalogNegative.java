@@ -11,7 +11,7 @@ public class CatalogNegative {
 
     public static Set getNegativeWord() {
         Set negativeSet = new HashSet<>();
-        //direct add
+        //1й способ, напрямую добавлять негатиные слова
         negativeSet.add("");
         negativeSet.add(" ");
         negativeSet.add("in");
@@ -22,8 +22,7 @@ public class CatalogNegative {
         negativeSet.add("a");
         negativeSet.add("to");
         negativeSet.add("of");
-
-
+        //2й способ - через текстовый файл, просто туда записывай слова
         MyCatalogReader.readCatalog("src/catalog/negative.txt", negativeSet);
         return negativeSet;
     }
