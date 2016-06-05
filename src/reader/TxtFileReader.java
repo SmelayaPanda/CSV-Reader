@@ -32,7 +32,7 @@ public class TxtFileReader {
                             sb.delete(0, sb.length());
 
                             if ((map.get(slovo) == null) &&
-                                    //тут подключаем/оключаем позитивныей и негативный листы
+                                    // (!) тут подключаем/оключаем позитивныей и негативный листы
                                     CatalogPositive.getPositiveWord().contains(slovo) &&
                                     !CatalogNegative.getNegativeWord().contains(slovo)) {
                                 map.put(slovo, 1);
