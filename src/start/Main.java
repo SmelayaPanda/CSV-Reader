@@ -21,6 +21,7 @@ public class Main {
 
             list.add(wordUnit);
         }
+        //compareTo написан в WordUnit, Сначала сортирует по колличесву совпадений, потом досортировывает ликсикографически
         Collections.sort(list, WordUnit::compareTo);
 
         for (WordUnit unit : list) {
